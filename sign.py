@@ -89,8 +89,8 @@ def sign_detect(matches, case, face, kp_case, kp, frame,frame_color):
     cv2.imshow(case + ' ',frame_color)
 
     if(is_detected>=5):
-        print match_points
-        k = cv2.waitKey(1500) & 0xFF
+
+        k = cv2.waitKey(1000) & 0xFF
 
 def findColor(hsv_image, lower, upper):
     mask = cv2.inRange(hsv_image, lower, upper)
@@ -126,7 +126,7 @@ count = 1
 
 while True:
     #init_time = time.time()
-    path = '../sample/sign/uturn/' + str(count) +  '.jpg'
+    path = '../sample/sign/parking4/' + str(count) +  '.jpg'
     frame = cv2.imread(path,0)    
     frame_color = cv2.imread(path,1)    
 
@@ -145,10 +145,12 @@ while True:
     # Need to draw only good matches, so create a mask
     
     #sign_detect(matches_stop, "stop", face_stop, kp_stop, kp, frame, frame_color)
-    #sign_detect(matches_parking, "parking", face_parking, kp_parking, kp, frame, frame_color)
-    sign_detect(matches_uturn, "uturn", face_uturn, kp_uturn, kp, frame, frame_color)
+    sign_detect(matches_parking, "parking", face_parking, kp_parking, kp, frame, frame_color)
+    #sign_detect(matches_uturn, "uturn", face_uturn, kp_uturn, kp, frame, frame_color)
 
 
+    #print("Time taken: ", (time.time()-init_time))
+    
     k = cv2.waitKey(50) & 0xFF
     
     #break # For Debugging
